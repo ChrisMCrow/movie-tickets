@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/scripts.js"></script>
+    <title>Movie Tickets</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="jumbotron">Movie Ticket Price Checker</h1>
+      <div class="row">
+
+        <div class="col-md-6">
+          <h2>Movie Selection</h2>
+          <form id="new-ticket">
+            <div class="form-group">
+              <label for="movie-title">Select Movie Title (* New Releases)</label>
+              <select class="form-control" id="movie-title">
+                <option value="avengers">Avengers: Infinity War</option>
+                <option value="deadpool">Deadpool 2*</option>
+                <option value="solo">Solo: A Star Wars Story*</option>
+                <option value="last-jedi">Star Wars VIII: The Last Jedi</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="age">Enter Your Age</label>
+              <select class="form-control" id="age">
+                <option value="children">Children 13 & Under</option>
+                <option value="students">Students with valid ID</option>
+                <option value="adults">Adults</option>
+                <option value="seniors">Seniors & Veterans</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="time">Select Time</label>
+              <select class="form-control" id="time">
+                <option value="matinee">Matinee (before 4pm)</option>
+                <option value="evening">Evening</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-info">Check Price</button>
+          </form>
+        </div>
+        <div class="col-md-6" id="result">
+          <h2>Ticket Price</h2>
+          <div id="posterResult">
+          </div>
+          <div id="priceResult">
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

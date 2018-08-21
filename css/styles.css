@@ -1,0 +1,12 @@
+.jumbotron {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#posterResult {
+  float: right;
+}
+
+#priceResult {
+  font-size: 64px;
+}
