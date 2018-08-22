@@ -1,43 +1,53 @@
-//back-end
+//BACK-END
+
+//ticketPrices object
+var ticketPrices = {"avengers":6, "deadpool":8, "solo":8, "last-jedi":6, "matinee":0, "evening":3, "children":0, "students":2, "adults":4, "seniors":1};
+
+//ticket constructor
 function Ticket(movie, age, time) {
-  this.movie = movie;
-  this.age = age;
-  this.time = time;
+  this.movie = movie
+  this.age = age
+  this.time = time
 }
 
-//Function to add ticket prices together depending on properties.
-function priceCheck(object) {
-  var prices = {"avengers":6, "deadpool":8, "solo":8, "last-jedi":6, "matinee":0, "evening":3, "children":0, "students":2, "adults":4, "seniors":1};
-  var finalPrice = 0;
-  var inputArray = Object.values(object);
-  inputArray.forEach(function(input) {
-    finalPrice = finalPrice + prices[input];
-  });
-  return finalPrice;
+//findPrice prototype
+Ticket.prototype.findPrice = function() {
+  var values = Object.values(this);
+  var price = 0
+  values.forEach(function(value) {
+    price += ticketPrices[value];
+  })
+  return price;
 }
 
-//Function to add ticketPrice and movie poster
-function resultFunction(totalPrice, ticket) {
-  var movieTitle = ticket.movie;
-  $("#result div").children().remove();
-  $("div#posterResult").append("<img src='img/" + movieTitle + ".jpg' alt='" + movieTitle + "' height=500px>");
-  $("div#priceResult").text("$" + totalPrice);
+//displayResult prototype
+Ticket.prototype.displayResult = function (price) {
+  $("div#posterResult").append(
+    "<img src='img/" + this.movie +
+    ".jpg' alt='" + this.movie +
+    "' height=400px>"
+  );
+  $("div#priceResult").text("$" + price);
 }
 
+//resetFields function
+function resetFields() {
+  $("div#posterResult").empty();
+  $("div#priceResult").text("");
+}
 
-//front-end
+//FRONT-END
 $(document).ready(function() {
   $("form#new-ticket").submit(function(event) {
     event.preventDefault();
+    resetFields();
 
-    var movieInput = $("#movie-title").val();
-    var ageInput = $("#age").val();
-    var timeInput = $("#time").val();
+    var movieInput = $("select#movie-title").val();
+    var ageInput = $("select#age").val();
+    var timeInput = $("select#time").val();
+    var ticketInstance = new Ticket(movieInput, ageInput, timeInput);
+    var instancePrice = ticketInstance.findPrice();
 
-    var newTicket = new Ticket(movieInput, ageInput, timeInput);
-
-    var ticketPrice = priceCheck(newTicket);
-
-    resultFunction(ticketPrice, newTicket);
+    ticketInstance.displayResult(instancePrice);
   });
 });
